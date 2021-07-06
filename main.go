@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
+	"time"
 )
 
 const DEFAULTLEN = 10
@@ -29,6 +30,7 @@ const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789?./
 func RandStringBytes(n int) string {
 	b := make([]byte, n)
 	for i := range b {
+		rand.Seed(time.Now().UTC().UnixNano())
 		b[i] = letters[rand.Intn(len(letters))]
 	}
 	return string(b)
