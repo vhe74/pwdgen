@@ -25,7 +25,8 @@ func main() {
 	fmt.Println(p)
 }
 
-const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789?./+,;:=@&(§!)"
+const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789?./+,;:=@&(!)"
+const numbers = "123456789"
 
 func RandStringBytes(n int) string {
 	b := make([]byte, n)
@@ -33,5 +34,7 @@ func RandStringBytes(n int) string {
 		rand.Seed(time.Now().UTC().UnixNano())
 		b[i] = letters[rand.Intn(len(letters))]
 	}
+	//Force the presence of 1 number
+	b[n-2] = numbers[rand.Intn(len(numbers))]
 	return string(b)
 }
